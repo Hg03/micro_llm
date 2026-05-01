@@ -1,6 +1,6 @@
-from qdrant_client.models import QueryResponse
-from micro_llm.scripts.embed import get_embedder
 from micro_llm.scripts.vectordb import get_qdrant_client
+from micro_llm.scripts.embed import get_embedder
+from qdrant_client.models import QueryResponse
 from omegaconf import DictConfig
 from typing import List
 
