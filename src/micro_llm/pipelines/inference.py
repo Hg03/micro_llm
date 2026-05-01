@@ -10,9 +10,7 @@ class Inference:
     def fire(self):
         print("Inference Pipeline Started..")
         relevant_docs = get_relevant_docs(cfg=self.cfg)
-        formatted_context = format_retrieved_context(
-            retrieved_context=relevant_docs, cfg=self.cfg
-        )
+        formatted_context = format_retrieved_context(points=relevant_docs)
         answer = generate_rag_answer(
             query=self.cfg.retrieve.query, context=formatted_context, cfg=self.cfg
         )

@@ -10,7 +10,7 @@ load_dotenv()
 
 
 def get_embedder(cfg: DictConfig) -> HuggingFaceEmbeddings:
-    return HuggingFaceEmbeddings(model_name=cfg.model)
+    return HuggingFaceEmbeddings(model_name="BAAI/bge-small-en-v1.5")
 
 
 def embed_chunks(chunks: list[Chunk], cfg: DictConfig) -> None:
