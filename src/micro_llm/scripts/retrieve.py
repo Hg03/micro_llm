@@ -12,10 +12,10 @@ from typing import List
 #     client.upsert(collection_name=collection_name, points=points)
 
 
-def get_relevant_docs(cfg: DictConfig) -> List[QueryResponse]:
+def get_relevant_docs(query: str, cfg: DictConfig) -> List[QueryResponse]:
     embedder = get_embedder(cfg=cfg)
     client = get_qdrant_client()
-    query_vector = embedder.embed_query(cfg.retrieve.query)
+    query_vector = embedder.embed_query(query)
 
     # Search Qdrant with the raw vector
     results = client.query_points(
