@@ -1,0 +1,37 @@
+services:
+  indexing:
+    build:
+      context: .
+      dockerfile: Dockerfile.indexing
+    container_name: micro_llm_indexing
+    volumes:
+      - ./src/micro_llm/docs:/app/src/micro_llm/docs
+    environment:
+      - QDRANT_CLUSTER_ENDPOINT=${QDRANT_CLUSTER_ENDPOINT}
+      - QDRANT_API_KEY=${QDRANT_API_KEY}
+    networks:
+      - micro_llm_net
+
+  inference:
+    build:
+      context: .
+      dockerfile: Dockerfile.inference
+    container_name: micro_llm_inference
+    ports:
+      - "8001:8001"
+    environment:
+      - QDRANT_CLUSTER_ENDPOINT=${QDRANT_CLUSTER_ENDPOINT}
+      - QDRANT_API_KEY=${QDRANT_API_KEY}
+      - HF_TOKEN=${HF_TOKEN}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - micro_llm_net
+
+networks:
+  micro_llm_net:
+    driver: bridge
