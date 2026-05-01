@@ -1,0 +1,3 @@
+defaults:
+  - indexing: indexing
+  - inference: inference

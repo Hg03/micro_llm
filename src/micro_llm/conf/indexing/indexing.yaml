@@ -1,0 +1,17 @@
+pipeline: enable # disable
+model: BAAI/bge-small-en-v1.5
+
+paths:
+  docs: src/micro_llm/docs/
+
+load:
+  do_ocr: True
+  do_table_structure: True
+
+chunker:
+  max_tokens: 256
+
+embed:
+  collection_name: first_collection
+
+

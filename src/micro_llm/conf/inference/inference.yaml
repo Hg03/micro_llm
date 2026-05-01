@@ -1,0 +1,8 @@
+retrieve:
+  collection_name: first_collection
+  model: sentence-transformers/all-minilm-l6-v2
+  query: What do you mean by Attention ?
+  top_k: 4
+
+response:
+  model: meta-llama/Meta-Llama-3-8B-Instruct
