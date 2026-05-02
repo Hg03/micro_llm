@@ -7,13 +7,16 @@ import os
 load_dotenv()
 
 
-def generate_rag_answer(query: str, context: List[str], cfg: DictConfig):
+def generate_rag_answer(
+    query: str, context: List[str], history: List[dict], cfg: DictConfig
+):
     client = InferenceClient(model=cfg.response.model, token=os.getenv("HF_TOKEN"))
     messages = [
         {
             "role": "system",
             "content": "You are a technical expert. Answer the question using ONLY the provided context.",
         },
+        *history,
         {"role": "user", "content": f"Context: {context}\n\nQuestion: {query}"},
     ]
 

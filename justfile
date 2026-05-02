@@ -4,4 +4,4 @@ index:
 
 infer:
     @echo "Running Inference Pipeline"
-    @python src/micro_llm/entrypoints/inference_endpoint.py
+    @uv run uvicorn micro_llm.entrypoints.inference_endpoint:app --host 0.0.0.0 --port 8001 --reload
